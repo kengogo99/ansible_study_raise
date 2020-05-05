@@ -1,0 +1,8 @@
+- name: Enable amzn2extra-nginx1.12 repository
+  shell: amazon-linux-extras enable nginx1.12
+  changed_when: false
+
+- name: Install Nginx packages from amazon-linux-extras
+  yum:
+    name: nginx
+    state: present
