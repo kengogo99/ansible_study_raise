@@ -1,9 +1,12 @@
-- name: yum update
-  yum : name=* state=latest
+- name: Get Nginx package list from local
+  yum:
+    disablerepo: "*"
+    list: nginx
+  register: installed_pkgs
 
-- name: Enable amzn2extra-nginx1.12 repository
-  shell: amazon-linux-extras install nginx1.12 -y
-  changed_when: false
+- name: Enable amzn2extra-nginx1 repository if nginx is not installed
+  shell: amazon-linux-extras enable nginx1
+  when: installed_pkgs.results | length == 0
 
 - name: Install Nginx packages from amazon-linux-extras
   yum:
