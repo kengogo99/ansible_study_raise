@@ -3,3 +3,8 @@
   become: True
   roles:
     - nginx
+    - mysql
+    - nodejs
+    - rbenv
+    - ruby
+
