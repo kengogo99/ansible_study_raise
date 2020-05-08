@@ -1,0 +1,13 @@
+---
+- name: Setup nodejs12.x
+  get_url: 
+    url: https://rpm.nodesource.com/setup_12.x
+    dest: /usr/bin/
+
+- name: Installing latest version of node.js
+  become: yes
+  yum:
+    name: nodejs
+    state: latest
+    lock_timeout: 180
+  when: not ansible_check_mode
