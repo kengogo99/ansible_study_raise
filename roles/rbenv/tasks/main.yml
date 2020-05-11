@@ -1,6 +1,40 @@
 ---
-- name: Cloning rbenv from git
+- name: Install Plugin
+  yum: 
+    name: "{{ packages }}"
+    state: latest
+  vars:
+    packages:
+        - make
+        - gcc-c++
+        - patch
+        - openssl-devel
+        - libyaml-devel
+        - libffi-devel
+        - libicu-devel
+        - libxml2
+        - libxslt
+        - libxml2-devel
+        - libxslt-devel
+        - zlib-devel
+        - readline-devel
+        - ImageMagick
+        - ImageMagick-devel
+        - epel-release
+
+- name: Clone rbenv from git
   git: repo=https://github.com/sstephenson/rbenv.git dest=~/.rbenv
 
-- name: Cloning rbenv build plugin from git
+- name: Clone rbenv build plugin from git
   git: repo=https://github.com/sstephenson/ruby-build.git dest=/root/.rbenv/plugins/ruby
+
+- name: Add Path to bash_profile
+  shell: bash -l echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
+
+- name: Edit bashrc
+  template:
+    src: roles/rbenv/templates/rbenv_sys.sh.j2
+    dest: /etc/profile.d/rbenv.sh
+    owner: ec2-user
+    group: ec2-user
+
