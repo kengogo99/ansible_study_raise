@@ -5,6 +5,7 @@
     - nginx
     - mysql
     - nodejs
+    - git
     - rbenv
     - ruby
-
+# test jenkins 
