@@ -1,0 +1,5 @@
+---
+- name: Installing latest version of git
+  yum:
+    name: git
+    state: latest
