@@ -1,0 +1,13 @@
+  - name:  install enable epel tripwire 
+    shell: "sudo amazon-linux-extras enable epel"
+    changed_when: False
+
+  - name:  install epel-release tripwire
+    shell: "sudo yum install -y epel-release"
+    changed_when: False
+
+  - name: Install tripwire
+    yum:
+     name: tripwire
+     state: present
+    become: yes
