@@ -4,8 +4,10 @@
   roles:
     - nginx
     - mysql
-    - nodejs
+    - tripwire
+    - fluentd
+#   - nodejs
     - git
-    - rbenv
+#   - rbenv
     - ruby
 # jenkins test 05
